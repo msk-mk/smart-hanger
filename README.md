@@ -13,7 +13,7 @@
     - 雨が降り始めたらLINEに通知
 
 ## システム構成
-
+<img width="401" height="83" alt="Image" src="https://github.com/user-attachments/assets/a19b1f35-4393-4478-9375-a2b81de20733" />
 
 ### 動作フロー
 
