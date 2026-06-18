@@ -5,12 +5,16 @@
 
 ## 機能
 1. 洗濯物が乾いたとき
-    - 洗濯物の静電容量を常時測定し、時定数が20回中8回以上200μs以下であった場合にLINEに通知
+    - ハンガーに取り付けた電極で洗濯物の静電容量を常時測定し、時定数が20回中8回以上200μs以下であった場合にLINEに通知
 
 2. 雨が降り始めたとき
     - [Yahooの気象情報API](https://developer.yahoo.co.jp/webapi/map/openlocalplatform/v1/weather.html) から指定した緯度経度の雨の強さを取得
 
     - 雨が降り始めたらLINEに通知
+
+3. その他
+    - iPhoneのショートカットからサーバにリクエストを送り、手動で雨カバーをとりつけることができる。
+
 
 ## システム構成
 <img width="401" height="83" alt="Image" src="https://github.com/user-attachments/assets/a19b1f35-4393-4478-9375-a2b81de20733" />
