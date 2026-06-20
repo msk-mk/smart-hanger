@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-cap_threshold = 200 #capcityの閾値(以下)
+cap_threshold = 200 
 cloth_threshold = 8
 window = 20
 
@@ -27,7 +27,7 @@ server.bind((bind_ip,bind_port))
 server.listen(5)
 print('listen {}:{}'.format(bind_ip, bind_port))
 
-client1 = None  # 最初に接続したクライアント
+client1 = None  
 
 def handle_client(client_socket):
     global cloth_cnt, cloth_flag, rain_flag, motor_flag, loop, client1
@@ -48,9 +48,7 @@ def handle_client(client_socket):
         lines = message.split("\r\n")
         parts = lines[0].split(" ")
         if len(parts) >= 2:
-            path = parts[1]  # リクエストパスを取得
-
-            # "/MOTOR"がリクエストされた場合の処理
+            path = parts[1]  
             if path == "/MOTOR":
                 if client1:
                     motor_flag = True
@@ -66,8 +64,7 @@ def handle_client(client_socket):
                 client_socket.send(response.encode())
         else:
             response = "HTTP/1.1 400 Bad Request\r\nContent-Type: text/plain\r\n\r\nMalformed HTTP request"
-            client_socket.send(response.encode())
-        
+            client_socket.send(response.encode())        
     elif (len(m_list) == 2):
         try:
             time = float(m_list[0])
@@ -77,8 +74,7 @@ def handle_client(client_socket):
         else: 
             loop += 1
             if cap <= cap_threshold:
-                cloth_cnt += 1
-            
+                cloth_cnt += 1           
             if (loop >= window):
                 rain_water = receive_weather()
                 if (rain_flag == False) and (rain_water != 0.0):
@@ -90,20 +86,16 @@ def handle_client(client_socket):
                     send_line_notify('洗濯物が乾きました。洗濯物を回収できます。')
                     cloth_flag = True
                 else:
-                    client_socket.send(b'OK\r\n')
-                
+                    client_socket.send(b'OK\r\n')               
                 cloth_cnt = 0
-                loop = 0
-                  
+                loop = 0                  
             elif (motor_flag == True and addr[0] == client1):
                 client_socket.send(b"MOTOR\r\n")
                 send_line_notify('洗濯物が守られました。')
                 print("MOTOR command sent to Client1")
-                motor_flag = False
-                
+                motor_flag = False                
             else:
-                client_socket.send(b'OK\r\n')
-                
+                client_socket.send(b'OK\r\n')               
             with open('Capacity.csv', 'a') as f:
                 writer = csv.writer(f)
                 writer.writerow([loop, cap])
