@@ -7,6 +7,7 @@ df['cloth_adj'] = df['cloth'][df['cloth'] < 400]
 
 cnt_list = []
 width = 20
+
 for i in range(len(df['cloth_adj'])):
     if(i%width == 0):
         cnt = 0
@@ -16,12 +17,10 @@ for i in range(len(df['cloth_adj'])):
                 cnt += 1
         cnt_list.append(cnt)
     
-# グラフの設定
 fig, ax = plt.subplots(figsize=(10, 6))
 
 ax.plot(cnt_list, marker='o', markersize=4, linewidth=1.5, color='blue', label='count of capacity < 200')
 ax.axhline(y=8, color='red', linestyle='--', linewidth=1, label='Threshold(8 times)')
-
 ax.set_xlabel(f'Window Number ({width} samples each)', fontsize=13)
 ax.set_ylabel(f'Count of Capacity < 200', fontsize=13)
 ax.set_ylim(-0.5, width + 0.5)
