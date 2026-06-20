@@ -7,13 +7,12 @@ const char* pass = WIFI_PASS;
 const char* serverIP = SERVER_IP;
 const int serverport = SERVER_PORT; 
 
-//cloth
 const int PULSE_PIN = 2;
 const int DIGITAzL_READ_PIN = 3;
 const int ANALOG_READ_PIN = 5;
 
-const double E = 5.06; // GPIO電圧実測値
-const double R = 2000000; // 2MΩ
+const double E = 5.06; 
+const double R = 2000000; 
 const double V = E * 0.632;
 
 WiFiClient client;
@@ -57,7 +56,7 @@ unsigned long charge() {
 }
 
 
-void RotateServo(){//モーターを回す
+void RotateServo(){
   int pos = 0;
 
   for (pos = 0; pos <= 180; pos += 1){
@@ -71,7 +70,7 @@ void RotateServo(){//モーターを回す
 }
 
 
-void WaitForResponse(String message){//クライアントからのメッセージを受信
+void WaitForResponse(String message){
   Serial.print("connecting to ");
   Serial.print(serverIP);
   Serial.print(":");
@@ -90,12 +89,15 @@ void WaitForResponse(String message){//クライアントからのメッセー�
       m_rcv = client.readStringUntil('\r');
       if(m_rcv == "OK"){
         Serial.println("...OK");
-      }else if (m_rcv == "ERROR"){
+      }
+      else if (m_rcv == "ERROR"){
         Serial.println("...NG");
-      }else if(m_rcv == "MOTOR"){
+      }
+      else if(m_rcv == "MOTOR"){
         Serial.println("MOTOR ON");
         RotateServo();
-      } else{
+      }
+      else{
         Serial.println("...receiveERROR");
       }
       client.stop();
@@ -108,7 +110,6 @@ void WaitForResponse(String message){//クライアントからのメッセー�
 void loop() {
   discharge();
 
-  //服側の静電容量
   unsigned long time_start = charge(1);
   double volts = 0;
   while (volts < V){
