@@ -1,11 +1,11 @@
 #include <Servo.h>
 
-Servo myservo;  //サーボオブジェクトの生成
+Servo myservo; 
 
-int pos = 0;    //角度を指定する変数
+int pos = 0;    
 
 void setup() {
-  myservo.attach(9);      //myservoとサーボモーターの対応付け
+  myservo.attach(9);     
 }
 
 void loop() {

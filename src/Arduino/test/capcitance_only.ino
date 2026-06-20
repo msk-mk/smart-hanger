@@ -1,13 +1,9 @@
-//const int PULSE_PIN = 2;
-//const int DIGITAL_READ_PIN = 3;
-//const int ANALOG_READ_PIN = 5;
-
 const int PULSE_PIN = 5;
 const int DIGITAL_READ_PIN = 6;
 const int ANALOG_READ_PIN = 0;
 
-const double E = 5.06; // GPIO電圧実測値
-const double R = 2000000; // 2MΩ
+const double E = 5.06; 
+const double R = 2000000; 
 const double V = E * 0.632;
 
 void setup()

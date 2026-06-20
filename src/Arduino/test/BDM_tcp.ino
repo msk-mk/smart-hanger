@@ -33,7 +33,6 @@ void loop() {
   Serial.print(":");
   Serial.println(serverport);
   
-  // Use WiFiClient class to create TCP connections
   WiFiClient client;
     
   if (!client.connect(serverIP, serverport)) {
