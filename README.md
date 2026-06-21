@@ -86,5 +86,5 @@ smart-hanger/
 python src/server/main_server.py
 ```
 
-### Arduino
+### Arduino側
 Arduino UNO R4 WiFi へ `src/Arduino/r4wifi.ino` を書き込みます。
